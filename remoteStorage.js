@@ -1,25 +1,13 @@
-function onloadFunc() {
-    console.log("test");
-    postData("/name", {"banana": "rama" })
+function onloadFunc(){
+    console.log("test");    // ob die Funktion aufgerufen wird, soll die Funktion loadData aufgerufen werden.
+    loadData();             // die Funktion wird aufgerufen
 }
 
-const BASE_URL = "https://remotestorage-3f179-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL = "https://remotestorage-3f179-default-rtdb.europe-west1.firebasedatabase.app/"; // URL der Datenbank, in dem Fall die Firesebase-Datenbank
 
-async function loadData(path=""){
-  let response = await fetch(BASE_URL + path + ".json");
-  let responseToJson = await response.json();
-  
-}
 
-async function postData(path="",data={}){
-    let response = await fetch(BASE_URL + path + ".json", {
-    method: "POST" ,
-    header: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data)
-
-    });
-
-    let responseToJson = await response.json();
+async function loadData(){
+    let response = await fetch(BASE_URL + ".json");      // die Datenbank wird geladen, diese Funktion kann warten
+    let responseToJson = await response.json();     // die Datenbank wird in JSON-Format geladen
+    console.log(responseToJson);
 }
